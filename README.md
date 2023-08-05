@@ -1,3 +1,6 @@
 # IAU 2
 
-Repositorio de la clase 1 modificado desde R _local_ y enviado desde el mismo entorno a *Github*
+Repositorio del Alumno: 
+Federico Galkin Sutton
+DNI: 33.023.6366
+Legago: 22M2688 
