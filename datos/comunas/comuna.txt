@@ -1,0 +1,4 @@
+Información geográfica de la locación (perímetro y área) de las comunas de la Ciudad establecidas 
+a partir de la Ley Orgánica de Comunas (Ley Nº 1777/2005).
+
+link: https://data.buenosaires.gob.ar/dataset/comunas
