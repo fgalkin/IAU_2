@@ -1,3 +1,5 @@
+#TP N° 1
+
 #Instalo las librerías pertinentes y procedo a abrir el archivo
 
 library(tidyverse)
@@ -24,7 +26,7 @@ base2 <- base %>%
   mutate(etapa = recode(etapa,"Primera etapa HRL"= "Gestión HRL","Segunda etapa HRL"= "Gestión HRL","Segunda Etapa HRL" = "Gestión HRL")) %>% #corrijo nombre de categorías
   filter(etapa!="") # elimino los Puntos Wi-Fi que no se corresponden con ninguna etapa
 
-#Ahora quiero comparar la cantidad de Puntos Wí-Fi creados en el subte anstes y después de la gestión de HRL 
+#Ahora quiero comparar la cantidad de Puntos Wí-Fi creados en el subte antes y después de la gestión de HRL 
 #y ver cual fue la línea más beneficiada en ambos casos
 
 Gestion_HRL <- base2 %>%
