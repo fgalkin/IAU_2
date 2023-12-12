@@ -1,0 +1,30 @@
+---
+title: "Introducción"
+description: |
+  **Federico Galkin Sutton**
+site: distill::distill_website
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+
+# Learn more about creating websites with Distill at:
+# https://rstudio.github.io/distill/website.html
+
+# Learn more about publishing to GitHub Pages at:
+# https://rstudio.github.io/distill/publish_website.html#github-pages
+
+```
+
+La presente página se hizo como presentación del Trabajo Final de la materia Instrumentos de Análisis Urbanos II en el marco de la Maestría en Economía Urbana de la Universidad Torcuato Di Tella
+
+Curso dictado por los profesores -Juan Pablo Ruiz Nicolini y Pablo Tiscornia
+
+El trabajo en cuestión busca analizar la red de internet gratuita de la Ciudad Autónoma de Buenos Aires, cuyo objetivo es brindar el servicio de internet libre y gratuito en la Ciudad para de conectar a los/as ciudadanos/as, democratizar la tecnología y contribuir a que Buenos Aires sea una ciudad más integrada y conectada.
+
+![Punto_Wi-Fi](https://fotos.perfil.com/2022/08/08/trim/987/555/wi-fi-ba-20220808-1399033.jpg)
+
+Actualmente, hay más de 1200 antenas distribuidas en más de 1000 lugares de la Ciudad donde circulan gran cantidad de personas, como son los edificios públicos (hospitales, museos, bibliotecas, teatros, centros de salud, polideportivos, entre otros), parques, plazas, estaciones de Subte y Metrobus. La red cuenta con un sistema de protección en la navegación para que los datos estén seguros y restringe contenidos no aptos para menores de 18 años. Para mas información véase: <https://buenosaires.gob.ar/innovacion/ciudadinteligente/proyectos/bawifi>
+
+El trabajo se hizo de forma incremental, se mantuvo el mismo proyecto, pero cada etapa se hizo a continuación de la anterior, tratando de mantener una unidad de análisis, ampliar el estudio del dataset y evolucionar en el manejo de las herramientas de R. En este caso el TP se modificó ligeramente de su versión en ".R" para que se pueda visualizar de mejor manera en la página.
+

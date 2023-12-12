@@ -30,12 +30,12 @@ censo2022 <- read.xlsx("Datos/cnphv2022_caba.xlsx")
 
 ######### TP N° 1 #########
 
-# La BASE son los Puntos de Wi-Fi Públicos de CABA y ofrece información y ubicación geográfica de los mismos en plazas,
+# El dataset de Puntos Wi-Fi Públicos de CABA y ofrece información y ubicación geográfica de los mismos en plazas,
 # parques, sedes comunales y bibliotecas de la Ciudad.
 
 summary(base) # ahora procederemos a tener una imagen general de la BASE
 
-# La información se organiza en la siguientes categorías: long, lat, id, nombre, tipo, etapa, etapa_obse, estado, 
+# La información se organiza en las siguientes categorías: long, lat, id, nombre, tipo, etapa, etapa_obse, estado, 
 # subcategoria, nombre y altura de la calle, barrio, comuna y codigo postal
 
 # A su vez se observa que, la mayor cantidad de Puntos de Wi-Fi:
@@ -82,18 +82,22 @@ summarise(Gestion_NHRL,sum(n))
 ## 5  Línea C  9    Línea E 1
 ## 6  Línea H  8
 
+# CONCLUSIONES
+# En términos generales la gestión de HRL puso mayor cantidad de Puntos Wi-Fi en toda la red de subtes y en cada línea
+# en particular. La líneas más beneficiadas en la gestión de HRL fueron A, B y C; mientras que en la gestión previa 
+# solo fue la D.
 
 ######### TP N° 2 #########
 
 # Ahora procedo a analizar como se distribuyó la ejecución de los Puntos de Wi-Fi Públicos de CABA a o largo 
-# de las comunas y entre las distintas gestiones. Para ello, empleare la librería "geoAr", que me permite permitirá
+# de las comunas y entre las distintas gestiones. Para ello, emplearé la librería "geoAr", que me permite 
 # visualizar los datos por comuna mediante una grilla que ordena las mismas según su disposición en el mapa.
 
 show_arg_codes(viewer = T) # Exploro ID de grillas
 
 caba <- get_grid (district = "CABA") # Descargo Grilla CABA
  
-# Gestiono la base, para seleccionar lo que me interesa y prepararla para unirla con la grilla de columnas 
+# Gestiono la base, para seleccionar lo que me interesa y prepararla para unirla con la grilla de comunas 
 
 base3 <- base %>% 
   select(etapa,comuna) %>%
@@ -115,7 +119,7 @@ base3 <- base %>%
                                           "Gestión MM"))) # Ordeno como las etapas deben aparecer en el gráfico
 
 
-# Genero el gráfico facetado georeferenciado según la ubicación espacial de la comunas empleando la librería "geofacet"
+# Genero el gráfico facetado georeferenciado según la ubicación espacial de las comunas empleando la librería "geofacet"
 
 ggplot(base3, aes(etapa, ptos_wifi, fill=etapa)) +
   geom_col() + 
@@ -142,10 +146,10 @@ ggplot(base3, aes(etapa, ptos_wifi, fill=etapa)) +
         axis.title.y = element_text(size = 20), 
         plot.title = element_text(size = 20, face = "bold", hjust = 0.5))
 
-# Conclusiones del gráfico
+# CONCLUSIONES DEL GRÁFICO
 
-# Como se evidenció al principio del trabajo la gestión previa a HRL (Mauricio Macri) fue la que creo mayor
-# cantidad Puntos Wi-Fi. Sin embargo, si observamos su ejecución por comuna, la 2° Gestión HRL genero más
+# Como se evidenció al principio del trabajo, la gestión previa a HRL (Mauricio Macri) fue la que creo mayor
+# cantidad Puntos Wi-Fi. Sin embargo, si observamos su ejecución por comuna, la 2° Gestión HRL generó más
 # Puntos Wi-Fi en las comunas 10, 11, 12 y 13. 
 
 # Asimismo se observa que durante la 1° Gestión HRL casi no se generaron Puntos Wi-Fi. En general todas
@@ -157,8 +161,7 @@ ggplot(base3, aes(etapa, ptos_wifi, fill=etapa)) +
 # de Puntos Wi-Fi inferior al promedio comunal. 
 
 
-
-# VISUALIZACIÓN UTILIZANDO geom_sf
+# VISUALIZACIÓN UTILIZANDO "geom_sf"
 
 # Primero modifico la base de Puntos Wi-Fi para adecuarla a mis necesidades
 
@@ -234,7 +237,7 @@ plot01 <- grid.arrange(plot_MM, plot_HRL, nrow = 1)
 # A partir de gráfico se puede evidenciar que la implementación de Puntos Wi-Fi:
   
 # 1. Tuvo una fuerte concentración por hectárea en la Comuna 1 y 3 en ambas gestiones
-# 2. Si se comparan ambas gestiones se observa claramente que la implementación de MM se hizo alrededor de la 
+# 2. Si se comparan ambas gestiones se observa claramente que la implementación de MM se hizo alrededor 
 #    de las comunas céntricas y hacia el sur, mientras que la gestión de HRL desarrolló una estrategia de 
 #    implementación más diversificada con un tendencia hacia el norte y el oeste.
 
@@ -255,8 +258,8 @@ base5 <- base %>%
   filter(etapa !="" & comuna != "") %>% # Elimino los Puntos Wi-Fi que no se corresponden con ninguna etapa o comuna
   droplevels() # Elimino las categorías que no tienen datos
 
-# Genero iconos de ubicación personalizados con la cara del jefe de gobierno de cada gestión para facilitar la
-# diferenciación entre marcadores de ubicación.
+# Para diferenciar los marcadores de ubicación de los Puntos Wi-Fi según cada gestión, los perzonalizo con la cara del
+# jefe de gobierno según el periodo en que se instalaron..
 
 lista_iconos <- iconList(HRL = makeIcon("Datos/Marcadores/HRL.png", "Datos/Marcadores/HRL@2x.png", 35, 50),
                          MM = makeIcon("Datos/Marcadores/MM.png", "Datos/Marcadores/MM2x.png", 35, 50))
@@ -269,8 +272,8 @@ lista_iconos <- iconList(HRL = makeIcon("Datos/Marcadores/HRL.png", "Datos/Marca
 colnames (censo2022)
 
 # El archivo posee 6 columnas (año, comuna, sup_km2, pob_total, densidad_hab/km2 y fuente), de la cual me interesa
-# "pob_total" y "sup_km2" que me brinda los datos de  población y la superficie en km2 de cada comuna. Reduzco el 
-# archivo a las variables necesarias.
+# "pob_total", "sup_km2" y "densidad_hab/km2" que me brinda los datos de  población, superficie en km2 y densidad 
+# poblacional de cada comuna. Reduzco el archivo a las variables necesarias.
 
 censo_pob <- censo2022 %>% 
   select(comuna,sup_km2,pob_total,'densidad_hab/km2') %>% 
@@ -351,7 +354,7 @@ leaflet() %>%
             title = "Gobiernos")
 
 
-# CONSIRECIONES FINALES
+# CONSIDERCIONES FINALES
 # En este caso la información analizada es la misma, por lo cual, no hay grandes conclusiones que hacer. Sin embargo, la
 # inclusión de la variable poblacional nos muestra que la ubicación de los Puntos Wi-Fi no tiene una estrecha relación
 # con el lugar donde reside la población.

@@ -1,0 +1,12 @@
+name: "IAU_2"
+title: "TP Final - IAU II"
+description: |
+  
+output_dir: "docs"
+navbar:
+  right:
+    - text: "Presentación"
+      href: index.html
+    - text: "TP Final"
+      href: about.html
+output: distill::distill_article
